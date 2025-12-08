@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Slip Generator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .box {
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+            border: 2px solid black;
+            padding: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Salary Slip Generator</h2>
+
+    <div class="box">
+        Employee Name:  
+        <input type="text" id="empName">
+
+        Department:
+        <input type="text" id="dept">
+
+        Basic Salary:
+        <input type="number" id="basic">
+
+        <button onclick="generateSlip()">Generate Salary Slip</button>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        function generateSlip() {
+            let name = document.getElementById("empName").value;
+            let dept = document.getElementById("dept").value;
+            let basic = Number(document.getElementById("basic").value);
+
+            let hra = basic * 0.10;
+            let pf = basic * 0.05;
+            let net = basic + hra - pf;
+
+            document.getElementById("result").style.display = "block";
+
+            document.getElementById("result").innerHTML = `
+                <h3>Hello, ${name}!</h3>
+                <h4>Salary Slip</h4>
+                <p><b>Department:</b> ${dept}</p>
+                <p><b>Basic Salary:</b> ₹${basic}</p>
+                <p><b>HRA (10%):</b> ₹${hra}</p>
+                <p><b>PF (5%):</b> ₹${pf}</p>
+                <p><b>Net Salary:</b> ₹${net}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>

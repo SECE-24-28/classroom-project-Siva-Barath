@@ -1,0 +1,15 @@
+.btn-click {
+    margin-top: 150px;
+    margin-left: 350px;
+    padding: 10px 20px;
+    border-radius: 1px;
+    background-color: lightblue;
+    color: orangered;
+}
+
+.btn-click:hover {
+    background-color: red;
+    color: whitesmoke;
+    opacity: 0.8;
+    transform: scale(1.2);
+}
