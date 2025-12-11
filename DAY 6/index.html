@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RechargeMax - Mobile Recharge & Bill Payments</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Phone Login -->
+    <section id="phoneLogin" class="auth-page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="brand-logo">
+                        <div class="logo-icon">
+                            <i class="material-icons">smartphone</i>
+                        </div>
+                        <div class="brand-text">
+                            <h1>RechargeMax</h1>
+                            <p>Instant Recharge & Bill Payments</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="welcome-text">
+                    <h2>Welcome Back!</h2>
+                    <p>Enter your mobile number to continue</p>
+                </div>
+                <form id="phoneLoginForm" class="auth-form">
+                    <div class="input-container">
+                        <div class="phone-input">
+                            <span class="country-code">🇮🇳 +91</span>
+                            <input type="tel" name="phone" placeholder="Mobile Number" maxlength="10" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-gradient btn-large">
+                        <span>Continue</span>
+                        <i class="material-icons">arrow_forward</i>
+                    </button>
+                </form>
+                <div class="auth-footer">
+                    <p>By continuing, you agree to our Terms & Privacy Policy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <main id="dashboard" class="dashboard hidden">
+        <!-- Smart Header -->
+        <header class="smart-header">
+            <div class="header-content">
+                <div class="brand-section">
+                    <div class="logo-mini">
+                        <i class="material-icons">smartphone</i>
+                    </div>
+                    <div class="brand-info">
+                        <h1>RechargeMax</h1>
+                        <p>Hi, <span id="userName">User</span>!</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" onclick="showNotifications()">
+                        <i class="material-icons">notifications</i>
+                        <span class="notification-badge">2</span>
+                    </button>
+                    <button class="header-btn" onclick="showProfile()">
+                        <i class="material-icons">account_circle</i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Hero Banner -->
+            <section class="hero-banner">
+                <div class="banner-content">
+                    <div class="banner-text">
+                        <h2>🎉 Get 10% Cashback</h2>
+                        <p>On your first recharge! Limited time offer</p>
+                    </div>
+                    <div class="banner-action">
+                        <button class="btn-banner" onclick="showRecharge()">Recharge Now</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Recharge Card -->
+            <section class="quick-recharge-section">
+                <div class="quick-recharge-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="material-icons">smartphone</i>
+                        </div>
+                        <div class="card-title">
+                            <h3>Quick Mobile Recharge</h3>
+                            <p>Instant recharge for all operators</p>
+                        </div>
+                    </div>
+                    <div class="quick-input">
+                        <div class="input-field">
+                            <i class="material-icons">phone</i>
+                            <input type="tel" id="quickMobile" placeholder="Enter mobile number" maxlength="10">
+                        </div>
+                        <button class="btn-proceed" onclick="quickRecharge()">
+                            <span>Proceed</span>
+                            <i class="material-icons">arrow_forward</i>
+                        </button>
+                    </div>
+                    <div class="operator-detect" id="quickOperator" style="display: none;">
+                        <div class="operator-info">
+                            <div class="operator-logo" id="quickOpLogo"></div>
+                            <span id="quickOpName"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- All Services Section -->
+            <section class="services-section">
+                <div class="section-header">
+                    <h2>All Services</h2>
+                    <p>Everything you need in one place</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card" onclick="showRecharge('prepaid')">
+                        <div class="service-icon prepaid">
+                            <i class="material-icons">smartphone</i>
+                        </div>
+                        <h3>Prepaid</h3>
+                        <p>Mobile Recharge</p>
+                    </div>
+                    <div class="service-card" onclick="showRecharge('postpaid')">
+                        <div class="service-icon postpaid">
+                            <i class="material-icons">receipt_long</i>
+                        </div>
+                        <h3>Postpaid</h3>
+                        <p>Bill Payment</p>
+                    </div>
+                    <div class="service-card" onclick="showDTH()">
+                        <div class="service-icon dth">
+                            <i class="material-icons">tv</i>
+                        </div>
+                        <h3>DTH</h3>
+                        <p>TV Recharge</p>
+                    </div>
+                    <div class="service-card" onclick="showBills('electricity')">
+                        <div class="service-icon electricity">
+                            <i class="material-icons">flash_on</i>
+                        </div>
+                        <h3>Electricity</h3>
+                        <p>Power Bill</p>
+                    </div>
+                    <div class="service-card" onclick="showBills('water')">
+                        <div class="service-icon water">
+                            <i class="material-icons">water_drop</i>
+                        </div>
+                        <h3>Water</h3>
+                        <p>Water Bill</p>
+                    </div>
+                    <div class="service-card" onclick="showBills('gas')">
+                        <div class="service-icon gas">
+                            <i class="material-icons">local_gas_station</i>
+                        </div>
+                        <h3>Gas</h3>
+                        <p>Gas Bill</p>
+                    </div>
+                    <div class="service-card" onclick="showFastag()">
+                        <div class="service-icon fastag">
+                            <i class="material-icons">toll</i>
+                        </div>
+                        <h3>FASTag</h3>
+                        <p>Toll Payment</p>
+                    </div>
+                    <div class="service-card" onclick="showBroadband()">
+                        <div class="service-icon broadband">
+                            <i class="material-icons">wifi</i>
+                        </div>
+                        <h3>Broadband</h3>
+                        <p>Internet Bill</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Transactions -->
+            <section class="recent-section">
+                <div class="section-header">
+                    <h2>Recent Transactions</h2>
+                    <button class="btn-text" onclick="showHistory()">View All</button>
+                </div>
+                <div class="transactions-container" id="recentTransactions">
+                    <div class="empty-state">
+                        <i class="material-icons">history</i>
+                        <h3>No Recent Transactions</h3>
+                        <p>Your transaction history will appear here</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="showDashboard()">
+                <i class="material-icons">home</i>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" onclick="showRecharge()">
+                <i class="material-icons">smartphone</i>
+                <span>Recharge</span>
+            </button>
+            <button class="nav-item" onclick="showHistory()">
+                <i class="material-icons">history</i>
+                <span>History</span>
+            </button>
+            <button class="nav-item" onclick="showProfile()">
+                <i class="material-icons">person</i>
+                <span>Profile</span>
+            </button>
+        </nav>
+    </main>
+
+    <!-- Recharge Page -->
+    <section id="recharge" class="page hidden">
+        <header class="page-header">
+            <button class="btn-back" onclick="showDashboard()">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            <h1>Mobile Recharge</h1>
+            <div class="header-spacer"></div>
+        </header>
+
+        <div class="page-content">
+            <!-- Operator & Number Section -->
+            <div class="recharge-form">
+                <div class="form-section">
+                    <h3>Mobile Number</h3>
+                    <div class="mobile-input-container">
+                        <div class="input-field large">
+                            <i class="material-icons">phone</i>
+                            <input type="tel" id="mobileNumber" placeholder="Enter 10-digit mobile number" maxlength="10">
+                        </div>
+                        <div class="operator-dropdown">
+                            <select id="operatorSelect">
+                                <option value="">Auto-detect operator</option>
+                                <option value="airtel">Airtel</option>
+                                <option value="jio">Jio</option>
+                                <option value="vi">Vi</option>
+                                <option value="bsnl">BSNL</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Operator Info -->
+                <div class="operator-info-card" id="operatorInfo" style="display: none;">
+                    <div class="operator-details">
+                        <div class="operator-logo" id="operatorLogo"></div>
+                        <div class="operator-text">
+                            <h4 id="operatorName"></h4>
+                            <p id="operatorCircle">Delhi</p>
+                        </div>
+                    </div>
+                    <div class="operator-status">
+                        <i class="material-icons">check_circle</i>
+                        <span>Verified</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plans Section -->
+            <div class="plans-section" id="plansSection" style="display: none;">
+                <!-- Plan Categories -->
+                <div class="plan-tabs">
+                    <button class="tab-btn active" data-category="popular">
+                        <i class="material-icons">star</i>
+                        <span>Popular</span>
+                    </button>
+                    <button class="tab-btn" data-category="unlimited">
+                        <i class="material-icons">all_inclusive</i>
+                        <span>Unlimited</span>
+                    </button>
+                    <button class="tab-btn" data-category="data">
+                        <i class="material-icons">data_usage</i>
+                        <span>Data Packs</span>
+                    </button>
+                    <button class="tab-btn" data-category="annual">
+                        <i class="material-icons">calendar_today</i>
+                        <span>Annual</span>
+                    </button>
+                    <button class="tab-btn" data-category="ott">
+                        <i class="material-icons">play_circle</i>
+                        <span>OTT Combos</span>
+                    </button>
+                    <button class="tab-btn" data-category="talktime">
+                        <i class="material-icons">call</i>
+                        <span>Talktime</span>
+                    </button>
+                </div>
+
+                <!-- Plans Container -->
+                <div class="plans-container" id="plansContainer">
+                    <!-- Plans will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Page -->
+    <section id="payment" class="page hidden">
+        <header class="page-header">
+            <button class="btn-back" onclick="showRecharge()">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            <h1>Payment</h1>
+            <div class="header-spacer"></div>
+        </header>
+
+        <div class="page-content">
+            <!-- Plan Summary -->
+            <div class="plan-summary-card">
+                <div class="summary-header">
+                    <h3>Plan Summary</h3>
+                    <button class="btn-edit" onclick="showRecharge()">
+                        <i class="material-icons">edit</i>
+                        <span>Edit</span>
+                    </button>
+                </div>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Mobile Number</span>
+                        <span id="summaryMobile"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Operator</span>
+                        <span id="summaryOperator"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Plan</span>
+                        <span id="summaryPlan"></span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total Amount</span>
+                        <span id="summaryAmount"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coupon Section -->
+            <div class="coupon-section">
+                <div class="coupon-input">
+                    <i class="material-icons">local_offer</i>
+                    <input type="text" placeholder="Enter coupon code">
+                    <button class="btn-apply">Apply</button>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="payment-methods">
+                <h3>Choose Payment Method</h3>
+                <div class="payment-options">
+                    <div class="payment-option" data-method="upi">
+                        <div class="payment-icon upi">
+                            <i class="material-icons">account_balance_wallet</i>
+                        </div>
+                        <div class="payment-info">
+                            <h4>UPI</h4>
+                            <p>GPay, PhonePe, Paytm & more</p>
+                        </div>
+                        <i class="material-icons">chevron_right</i>
+                    </div>
+                    <div class="payment-option" data-method="cards">
+                        <div class="payment-icon cards">
+                            <i class="material-icons">credit_card</i>
+                        </div>
+                        <div class="payment-info">
+                            <h4>Cards</h4>
+                            <p>Debit & Credit Cards</p>
+                        </div>
+                        <i class="material-icons">chevron_right</i>
+                    </div>
+                    <div class="payment-option" data-method="netbanking">
+                        <div class="payment-icon netbanking">
+                            <i class="material-icons">account_balance</i>
+                        </div>
+                        <div class="payment-info">
+                            <h4>Net Banking</h4>
+                            <p>All major banks supported</p>
+                        </div>
+                        <i class="material-icons">chevron_right</i>
+                    </div>
+                    <div class="payment-option" data-method="wallet">
+                        <div class="payment-icon wallet">
+                            <i class="material-icons">wallet</i>
+                        </div>
+                        <div class="payment-info">
+                            <h4>Wallets</h4>
+                            <p>Paytm, Amazon Pay & more</p>
+                        </div>
+                        <i class="material-icons">chevron_right</i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Button -->
+            <div class="payment-footer">
+                <button class="btn-pay" onclick="processPayment()">
+                    <i class="material-icons">lock</i>
+                    <span>Pay Securely</span>
+                    <span id="payAmount">₹299</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Page -->
+    <section id="success" class="page hidden">
+        <div class="success-container">
+            <div class="success-animation">
+                <div class="checkmark-circle">
+                    <i class="material-icons">check</i>
+                </div>
+            </div>
+            <div class="success-content">
+                <h2>Recharge Successful!</h2>
+                <p>Your mobile has been recharged successfully</p>
+                
+                <div class="transaction-card">
+                    <div class="transaction-detail">
+                        <span>Transaction ID</span>
+                        <span id="transactionId"></span>
+                    </div>
+                    <div class="transaction-detail">
+                        <span>Amount</span>
+                        <span id="transactionAmount"></span>
+                    </div>
+                    <div class="transaction-detail">
+                        <span>Date & Time</span>
+                        <span id="transactionDate"></span>
+                    </div>
+                    <div class="transaction-detail">
+                        <span>Mobile Number</span>
+                        <span id="transactionMobile"></span>
+                    </div>
+                </div>
+
+                <div class="success-actions">
+                    <button class="btn-primary" onclick="downloadReceipt()">
+                        <i class="material-icons">download</i>
+                        <span>Download Receipt</span>
+                    </button>
+                    <button class="btn-secondary" onclick="shareReceipt()">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Share Receipt</span>
+                    </button>
+                </div>
+
+                <button class="btn-home" onclick="showDashboard()">
+                    <i class="material-icons">home</i>
+                    <span>Back to Home</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transaction History -->
+    <section id="history" class="page hidden">
+        <header class="page-header">
+            <button class="btn-back" onclick="showDashboard()">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            <h1>Transaction History</h1>
+            <button class="btn-filter" onclick="showFilters()">
+                <i class="material-icons">filter_list</i>
+            </button>
+        </header>
+
+        <div class="page-content">
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="completed">Completed</button>
+                <button class="filter-tab" data-filter="pending">Pending</button>
+                <button class="filter-tab" data-filter="failed">Failed</button>
+            </div>
+
+            <!-- Transactions List -->
+            <div class="history-list" id="historyList">
+                <div class="empty-state">
+                    <i class="material-icons">receipt_long</i>
+                    <h3>No Transactions Yet</h3>
+                    <p>Your transaction history will appear here</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Page -->
+    <section id="profile" class="page hidden">
+        <header class="page-header">
+            <button class="btn-back" onclick="showDashboard()">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            <h1>Profile</h1>
+            <div class="header-spacer"></div>
+        </header>
+
+        <div class="page-content">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="material-icons">person</i>
+                </div>
+                <div class="profile-info">
+                    <h3 id="profileName">User</h3>
+                    <p id="profilePhone">+91 XXXXXXXXXX</p>
+                </div>
+                <button class="btn-edit-profile">
+                    <i class="material-icons">edit</i>
+                </button>
+            </div>
+
+            <!-- Wallet Balance -->
+            <div class="wallet-card">
+                <div class="wallet-info">
+                    <div class="wallet-icon">
+                        <i class="material-icons">account_balance_wallet</i>
+                    </div>
+                    <div class="wallet-details">
+                        <h4>Wallet Balance</h4>
+                        <p class="balance">₹0.00</p>
+                    </div>
+                </div>
+                <button class="btn-add-money">Add Money</button>
+            </div>
+
+            <!-- Profile Menu -->
+            <div class="profile-menu">
+                <div class="menu-item" onclick="showHistory()">
+                    <div class="menu-icon">
+                        <i class="material-icons">history</i>
+                    </div>
+                    <div class="menu-info">
+                        <h4>Transaction History</h4>
+                        <p>View all your transactions</p>
+                    </div>
+                    <i class="material-icons">chevron_right</i>
+                </div>
+                <div class="menu-item" onclick="showSavedNumbers()">
+                    <div class="menu-icon">
+                        <i class="material-icons">bookmark</i>
+                    </div>
+                    <div class="menu-info">
+                        <h4>Saved Numbers</h4>
+                        <p>Manage your saved numbers</p>
+                    </div>
+                    <i class="material-icons">chevron_right</i>
+                </div>
+                <div class="menu-item" onclick="showSupport()">
+                    <div class="menu-icon">
+                        <i class="material-icons">headset_mic</i>
+                    </div>
+                    <div class="menu-info">
+                        <h4>Customer Support</h4>
+                        <p>Get help & support</p>
+                    </div>
+                    <i class="material-icons">chevron_right</i>
+                </div>
+                <div class="menu-item" onclick="showAbout()">
+                    <div class="menu-icon">
+                        <i class="material-icons">info</i>
+                    </div>
+                    <div class="menu-info">
+                        <h4>About App</h4>
+                        <p>Version 1.0.0</p>
+                    </div>
+                    <i class="material-icons">chevron_right</i>
+                </div>
+                <div class="menu-item logout" onclick="logout()">
+                    <div class="menu-icon">
+                        <i class="material-icons">logout</i>
+                    </div>
+                    <div class="menu-info">
+                        <h4>Logout</h4>
+                        <p>Sign out of your account</p>
+                    </div>
+                    <i class="material-icons">chevron_right</i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
